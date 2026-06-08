@@ -15,10 +15,10 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i = 0; i < a-1; i++){
+        for(int i = 0; i < a; i++){
             int min = i;
             //뒤부터 탐색
-            for(int j = i+1; j < a;j++){
+            for(int j = i; j < a;j++){
                 if(arr[j] < arr[min]){
                     min = j;
                 }
