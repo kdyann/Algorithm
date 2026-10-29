@@ -4,35 +4,37 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-
-        int[] a = new int[n+1];
-        int[] psum = new int[n+1];
-
-        st = new StringTokenizer(br.readLine());
-
-        //누적합 구하기
-        for(int i = 1; i <= n; i++){
-            a[i] = Integer.parseInt(st.nextToken());
-            psum[i] = psum[i-1] + a[i];
+        int[] nans = new int[9];
+        int sum = 0;
+        for(int i = 0; i < 9; i++){
+            int num = Integer.parseInt(br.readLine());
+            nans[i] = num;
+            sum += num;
         }
 
-        StringBuilder sb = new StringBuilder();
+        int num1 = 0;
+        int num2 = 0;
 
-        for(int i = 0; i < m; i++){
-            st = new StringTokenizer(br.readLine());
-
-            int b = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
-
-            sb.append(psum[c] - psum[b-1]).append("\n");
+        for(int i = 0; i < 8; i++){
+            for(int j = i + 1; j < 9; j++){
+                if(sum - nans[i] - nans[j] == 100){
+                    num1 = nans[i];
+                    num2 = nans[j];
+                    break;
+                }
+            }
         }
-        System.out.print(sb);
+
+        Arrays.sort(nans);
+
+        for(int i = 0; i < 9; i++){
+            if(nans[i] == num1 || nans[i] == num2){
+                continue;
+            }
+
+            System.out.println(nans[i]);
+        }
     }
-    
 }
