@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 //일곱난쟁이 문제
-public class 2309 {
+public class BOJ2309 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] nans = new int[9];
