@@ -1,40 +1,21 @@
 package practice;
 
-import java.util.*;
 import java.io.*;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
+public class Main{
+
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] nans = new int[9];
-        int sum = 0;
-        for(int i = 0; i < 9; i++){
-            int num = Integer.parseInt(br.readLine());
-            nans[i] = num;
-            sum += num;
+
+        String s = br.readLine();
+        int[] arr = new int[26];
+
+        for(int i = 0; i < s.length(); i++){
+            char c =  s.charAt(i);
+            arr[c - 'a']++;
         }
-
-        int num1 = 0;
-        int num2 = 0;
-
-        for(int i = 0; i < 8; i++){
-            for(int j = i + 1; j < 9; j++){
-                if(sum - nans[i] - nans[j] == 100){
-                    num1 = nans[i];
-                    num2 = nans[j];
-                    break;
-                }
-            }
-        }
-
-        Arrays.sort(nans);
-
-        for(int i = 0; i < 9; i++){
-            if(nans[i] == num1 || nans[i] == num2){
-                continue;
-            }
-
-            System.out.println(nans[i]);
+        for(int i = 0; i < 26; i++){
+            System.out.print(arr[i] + " ");
         }
     }
 }
