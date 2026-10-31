@@ -1,3 +1,5 @@
+package solve.누적합과구현;
+
 import java.util.*;
 import java.io.*;
 
