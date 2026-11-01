@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 //트럭주차
-//counting
+//counting 배열
 public class BOJ2979{
 
     public static void main(String[] args) throws IOException{
@@ -17,13 +17,14 @@ public class BOJ2979{
 
         int[] arr = new int[102];
 
+        //coungting 배열 쓰기 중요
         for(int i = 0; i < 3; i++){
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             for(int j = start; j < end; j++){
                 arr[j]++;
-            }
+            } 
         }
 
         int sum = 0;
