@@ -1,28 +1,32 @@
 package practice;
 
-import java.util.*;
 import java.io.*;
 
 public class Main{
-
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[26];
+        StringBuilder sb = new StringBuilder();
 
-        boolean ispal = true;
+        for(int i = 0; i < n; i++){
+            String s = br.readLine();
+            char c = s.charAt(0);
+            arr[c - 'a']++;
+        }
 
-        for(int i = 0; i < s.length() / 2; i++){
-            if(s.charAt(i) != s.charAt(s.length() - 1 - i)){
-                ispal = false;
-                break;
+        for(int i = 0; i < 26; i++){
+            if(arr[i] >= 5){
+                sb.append((char)(i + 'a'));
             }
         }
 
-        if(ispal){
-            System.out.println(1);
+        if(sb.length() > 0){
+            System.out.println(sb);
         }else{
-            System.out.println(0);
+            System.out.println("PREDAJA");
         }
-    
+
     }
+
 }
