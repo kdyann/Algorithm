@@ -5,18 +5,43 @@ import java.io.*;
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(c - 0 >= 'a' && c - 0 <= 'z'){
-                sb.append((char)((c - 'a' + 13) % 26 + 'a'));
-            } else if(c - 0 >= 'A' && c - 0 <= 'Z'){
-                sb.append((char)((c - 'A' + 13) % 26 + 'A'));
-            } else{
-                sb.append(c);
+        int N = Integer.parseInt(br.readLine());
+
+        String pattern = br.readLine();
+        int idx = pattern.indexOf("*");
+
+        String start = pattern.substring(0, idx);
+        String last = pattern.substring(idx + 1);
+
+        for(int i = 0; i < N; i++){
+            String s = br.readLine();
+            boolean isOkay = true;
+
+            if(s.length() < start.length() + last.length()){
+                isOkay = false;
+            }
+            if(isOkay){
+                for(int j = 0; j < start.length(); j++){
+                    if(s.charAt(j) != start.charAt(j)){
+                        isOkay = false;
+                        break;
+                    }
+                }
+            }
+            if(isOkay){
+                int cnt = s.length() - 1;
+                for(int j = last.length() - 1; j >= 0; j--){
+                    if(s.charAt(cnt--) != last.charAt(j)){
+                        isOkay = false;
+                        break;
+                    }
+                }
+            }
+            if(isOkay){
+                System.out.println("DA");
+            }else{
+                System.out.println("NE");
             }
         }
-        System.out.print(sb);
     }
 }
