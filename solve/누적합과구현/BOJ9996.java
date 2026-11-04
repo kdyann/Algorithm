@@ -43,5 +43,32 @@ public class BOJ9996 {
                 System.out.println("NE");
             }
         }
+
+        // 다른 방법
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        String pattern2 = br.readLine();
+        
+        int pos = pattern2.indexOf("*");
+        String pre = pattern2.substring(0, pos);
+        String suf = pattern2.substring(pos+1);
+
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < n; i++){
+            String s = br.readLine();
+
+            if(pre.length() + suf.length() > s.length()){
+                sb.append("NE\n");
+            } else if(s.startsWith(pre) && s.endsWith(suf)){
+                sb.append("DA\n");
+            } else{
+                sb.append("NE\n");
+            }
+        }
+
+        System.out.print(sb);
+
+
     }
 }
