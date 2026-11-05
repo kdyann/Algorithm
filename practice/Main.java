@@ -1,47 +1,33 @@
 package practice;
 
 import java.io.*;
+import java.util.*;
 
 public class Main{
+
+    static int n;
+    static int k;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
 
-        String pattern = br.readLine();
-        int idx = pattern.indexOf("*");
+        int[] psum = new int[n + 1];
+        st = new StringTokenizer(br.readLine());
 
-        String start = pattern.substring(0, idx);
-        String last = pattern.substring(idx + 1);
-
-        for(int i = 0; i < N; i++){
-            String s = br.readLine();
-            boolean isOkay = true;
-
-            if(s.length() < start.length() + last.length()){
-                isOkay = false;
-            }
-            if(isOkay){
-                for(int j = 0; j < start.length(); j++){
-                    if(s.charAt(j) != start.charAt(j)){
-                        isOkay = false;
-                        break;
-                    }
-                }
-            }
-            if(isOkay){
-                int cnt = s.length() - 1;
-                for(int j = last.length() - 1; j >= 0; j--){
-                    if(s.charAt(cnt--) != last.charAt(j)){
-                        isOkay = false;
-                        break;
-                    }
-                }
-            }
-            if(isOkay){
-                System.out.println("DA");
-            }else{
-                System.out.println("NE");
-            }
+        for(int i = 1; i < n; i++){
+            int temp = Integer.parseInt(st.nextToken());
+            psum[i] = psum[i - 1] + temp;
         }
+
+        int ret = Integer.MIN_VALUE;
+
+        for(int i = k; i <= n; i++){
+            int sum = psum[i] - psum[i - k];
+            ret = Math.max(ret, sum);
+        }
+        
+        System.out.println(ret);
     }
 }
