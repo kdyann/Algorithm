@@ -21,7 +21,7 @@ public class BOJ2559 {
         int[] psum = new int[n + 1];
         st = new StringTokenizer(br.readLine());
 
-        for(int i = 1; i < n; i++){
+        for(int i = 1; i <= n; i++){
             int temp = Integer.parseInt(st.nextToken());
             psum[i] = psum[i - 1] + temp;
         }
