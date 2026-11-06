@@ -4,33 +4,24 @@ import java.io.*;
 import java.util.*;
 
 public class Main{
-
-    static int n;
-    static int m;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(br.readLine());
 
-        Map<String, Integer> nameMap = new HashMap<>();
-        Map<Integer, String> numMap = new HashMap<>();
-
-        for(int i = 1; i <= n; i++){
-            String name = br.readLine();
-            nameMap.put(name, i);
-            numMap.put(i, name);
-        }
-        for(int i = 0; i < m; i++){
-            String input = br.readLine();
-            try{
-                int key = Integer.parseInt(input);
-                System.out.println(numMap.get(key));
-            }catch(Exception e){
-                System.out.println(nameMap.get(input));
+        for(int i = 0; i < n; i++){
+            int test = Integer.parseInt(br.readLine());
+            HashMap<String, Integer> map = new HashMap<>();
+            for(int j = 0; j < test; j++){
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                String name = st.nextToken();
+                String kind = st.nextToken();
+                map.put(kind, map.getOrDefault(kind,0) + 1);
             }
+            int result = 1;
+            for(Integer value : map.values()){
+                result *= (value + 1);
+            }
+            System.out.println(result - 1);
         }
-
-
     }
 }
