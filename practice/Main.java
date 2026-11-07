@@ -1,27 +1,43 @@
 package practice;
 
 import java.io.*;
-import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        String s = br.readLine();
+        int[] cnt = new int[26];
 
-        for(int i = 0; i < n; i++){
-            int test = Integer.parseInt(br.readLine());
-            HashMap<String, Integer> map = new HashMap<>();
-            for(int j = 0; j < test; j++){
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                String name = st.nextToken();
-                String kind = st.nextToken();
-                map.put(kind, map.getOrDefault(kind,0) + 1);
-            }
-            int result = 1;
-            for(Integer value : map.values()){
-                result *= (value + 1);
-            }
-            System.out.println(result - 1);
+        for(int i = 0; i < s.length(); i++){
+            cnt[s.charAt(i) - 'A']++;
         }
+        int oddCount = 0;
+        char mid = '\0';
+
+        for(int i = 0; i < 26; i++){
+            if(cnt[i] % 2 == 1){
+                mid = (char)(i + 'A');
+                oddCount++;
+            }
+        }
+        if(oddCount >= 2){
+            System.out.println("I'm Sorry Hansoo");
+            return;
+        }
+
+        StringBuilder left = new StringBuilder();
+
+        for(int i = 0; i < 26; i++){
+            for(int j = 0; j < cnt[i]/2; j++){
+                left.append((char)(i + 'A'));
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(left);
+        if(oddCount == 1){
+            result.append(mid);
+        }
+        result.append(left.reverse());
+        System.out.println(result);
     }
 }
